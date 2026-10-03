@@ -13,7 +13,7 @@ pipeline {
             steps {
                 bat '''
                     cd /d C:\\Users\\HP\\devops-chef-project
-                    chef-client --local-mode --override-runlist myapp
+                    C:\opscode\chef-workstation\bin\chef-client.bat --local-mode --override-runlist myapp
                 '''
             }
         }
