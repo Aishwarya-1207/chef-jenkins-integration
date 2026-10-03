@@ -10,13 +10,13 @@ pipeline {
         }
 
         stage('Chef Deployment') {
-            steps {
-                bat '''
-                    cd /d C:\\Users\\HP\\devops-chef-project
-                    C:\opscode\chef-workstation\bin\chef-client.bat --local-mode --override-runlist myapp
-                '''
-            }
-        }
+    steps {
+        bat '''
+            cd /d C:\\Users\\HP\\devops-chef-project
+            C:\\opscode\\chef-workstation\\bin\\chef-client.bat --local-mode --override-runlist myapp
+        '''
+    }
+}
 
         stage('Verify Deployment') {
             steps {
