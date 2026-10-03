@@ -9,24 +9,26 @@ pipeline {
             }
         }
 
-       stage('Chef Deployment') {
-    steps {
-        bat '''
-            cd /d C:\\Users\\HP\\devops-chef-project
-            C:\\opscode\\chef-workstation\\bin\\chef-client.bat --local-mode --chef-license accept --override-runlist myapp
-        '''
-    }
-}
+        stage('Chef Deployment') {
+            steps {
+                bat '''
+                    cd /d C:\\Users\\HP\\devops-chef-project
+                    C:\\opscode\\chef-workstation\\bin\\chef-client.bat --local-mode --chef-license accept --override-runlist myapp
+                '''
+            }
+        }
 
         stage('Verify Deployment') {
-    steps {
-        bat '''
-            if exist C:\\DevOpsApp\\index.html (
-                echo Application deployed successfully!
-            ) else (
-                echo Application deployment failed!
-                exit /b 1
-            )
-        '''
+            steps {
+                bat '''
+                    if exist C:\\DevOpsApp\\index.html (
+                        echo Application deployed successfully!
+                    ) else (
+                        echo Application deployment failed!
+                        exit /b 1
+                    )
+                '''
+            }
+        }
     }
 }
