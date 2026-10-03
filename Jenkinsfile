@@ -18,17 +18,12 @@ pipeline {
             }
         }
 
-        stage('Verify Deployment') {
-            steps {
-                bat '''
-                    if exist C:\\DevOpsApp\\index.html (
-                        echo Application deployed successfully!
-                    ) else (
-                        echo Application deployment failed!
-                        exit /b 1
-                    )
-                '''
-            }
-        }
+       stage('Verify Deployment') {
+    steps {
+        bat '''
+            powershell -Command "try { $response = Invoke-WebRequest -Uri http://localhost:8081 -UseBasicParsing; if ($response.StatusCode -eq 200) { Write-Host 'Application Server is running successfully!' } else { exit 1 } } catch { Write-Host 'Application Server verification failed!'; exit 1 }"
+        '''
+    }
+}
     }
 }
